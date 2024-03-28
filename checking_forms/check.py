@@ -8,7 +8,12 @@ from bs4 import BeautifulSoup
 
 parser = argparse.ArgumentParser(description="HTML Vulnerability Analyzer")
 
-parser.add_argument("-v", "--version", action="version", version="%(prog)s 1.0")
+parser.add_argument(
+    "-v",
+    "--version",
+    action="version",
+    version="%(prog)s 1.0",
+)
 parser.add_argument("url", type=str, help="URL of HTML to analyze")
 
 args = parser.parse_args()
