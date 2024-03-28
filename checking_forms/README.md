@@ -32,7 +32,7 @@ chmod a+x checker.py
 to make this file executable, and then you can run it like this
 
 ```bash
-./check.py http://localhost:8000
+./check.py http://127.0.0.1:8000
 ```
 
 The chmod a+x checker.py command changes the permissions of the file checker.py to make it executable. This command is necessary because, by default, files may not have permission to be executed as programs in Unix-like operating systems, including Linux and macOS.
