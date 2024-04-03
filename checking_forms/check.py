@@ -27,19 +27,24 @@ if validators.url(url):
 
     forms = parsed_html.find_all("form")
     comments = parsed_html.find_all(string=lambda text: isinstance(text, Comment))
+    password_inputs = parsed_html.find_all("input", {"name": "password"})
 
     for form in forms:
         action = form.get("action")
         if action:
             form_scheme = urlparse(action).scheme
             if form_scheme != "https" and urlparse(url).scheme != "https":
-                report += "Form is not secure."
+                report += "Form is not secure.\n"
             else:
-                report += "Form is secure."
+                report += "Form is secure.\n"
 
     for comment in comments:
         if comment.find("key:") > -1:
-            report += "Key found in HTML, remove immediately!"
+            report += "Key issue. Key found in HTML, remove immediately!\n"
+
+    for password_input in password_inputs:
+        if password_input.get("type") != "password":
+            report += "Input Issue: Plaintext password input found. Please change to password type input\n"
 else:
     print("Invalid URL")
 
